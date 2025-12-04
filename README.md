@@ -16,7 +16,7 @@ Bestdori 场景背景图下载工具。
 - **Python 3.10+**
 - **Playwright**: 动态渲染网页并提取图片资源链接。
 - **aiohttp**: 异步网络请求。
-- **Tkinter**: 构建轻量级GUI界面。
+- **customtkinter**: 构建GUI界面。
 
 ## 安装与环境配置
 
