@@ -22,7 +22,14 @@ Bestdori 场景背景图下载工具。
 
 建议使用 Python 虚拟环境来运行本项目，避免依赖冲突。
 
-### 1. 创建并激活虚拟环境
+### 1. 克隆项目
+
+```bash
+git clone https://github.com/Yulinanami/Bestdori_bg_imgDownload
+cd Bestdori_bg_imgDownload
+```
+
+### 2. 创建并激活虚拟环境
 
 ```bash
 # 创建虚拟环境
@@ -35,13 +42,13 @@ python -m venv .venv
 source .venv/bin/activate
 ```
 
-### 2. 安装 Python 依赖
+### 3. 安装 Python 依赖
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. 安装 Playwright 浏览器内核
+### 4. 安装 Playwright 浏览器内核
 
 使用 Playwright 模拟浏览器行为进行扫描，需要安装内核：
 
@@ -49,7 +56,7 @@ pip install -r requirements.txt
 python -m playwright install chromium
 ```
 
-### 4. 启动程序
+### 5. 启动程序
 
 在终端中运行命令启动 GUI 界面：
 
