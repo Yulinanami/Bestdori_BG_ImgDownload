@@ -25,7 +25,7 @@ Bestdori 场景背景图下载工具。
 ### 1. 克隆项目
 
 ```bash
-git clone https://github.com/Yulinanami/Bestdori_bg_imgDownload
+git clone https://github.com/Yulinanami/Bestdori_BG_ImgDownload
 cd Bestdori_BG_ImgDownload
 ```
 
