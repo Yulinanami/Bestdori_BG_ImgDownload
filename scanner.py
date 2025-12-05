@@ -5,6 +5,13 @@ from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeo
 from common import BG_LIST_URL, HEADERS, wait_if_paused_sync
 from stats import DownloadStats
 
+# 极小的 1x1 PNG，用于拦截图片请求时返回占位，避免下载真实图片流量
+PLACEHOLDER_PNG = (
+    b"\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01"
+    b"\x08\x06\x00\x00\x00\x1f\x15\xc4\x89\x00\x00\x00\nIDATx\xdac\xf8\x0f"
+    b"\x00\x01\x01\x01\x00\x18\xdd\x8d\xe1\x00\x00\x00\x00IEND\xaeB`\x82"
+)
+
 
 def scan_all_scenarios(
     output_dir,
@@ -26,6 +33,23 @@ def scan_all_scenarios(
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         page = browser.new_page(user_agent=HEADERS["User-Agent"])
+
+        def _route_filter(route):
+            rtype = route.request.resource_type
+
+            if rtype == "image":
+                # 对图片请求返回占位图，触发 onload 但不下载真实资源
+                route.fulfill(
+                    status=200,
+                    headers={"Content-Type": "image/png"},
+                    body=PLACEHOLDER_PNG,
+                )
+            elif rtype in {"media", "font"}:
+                route.abort()
+            else:
+                route.continue_()
+
+        page.route("**/*", _route_filter)
 
         log(f"[+] 打开 {BG_LIST_URL}")
         page.goto(BG_LIST_URL)
