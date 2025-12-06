@@ -62,9 +62,7 @@ async def download_one(
 
 
 def print_progress(done: int, total: int, success: int, failed: int, skipped: int):
-    msg = (
-        f"\r进度 {done}/{total} | 成功 {success} | 失败 {failed} | 过滤 {skipped}"
-    )
+    msg = f"\r进度 {done}/{total} | 成功 {success} | 失败 {failed} | 过滤 {skipped}"
     print(msg, end="", flush=True)
 
 
