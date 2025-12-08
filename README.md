@@ -8,7 +8,7 @@ Bestdori 场景背景图下载工具。
 
 ## 注意
 
-simple_version 不需要浏览器内核，开箱即用。
+simple_version 不需要浏览器内核，开箱即用，启动程序后一路回车即可。
 
 gui_scan_version 模拟浏览器进行扫描，需要安装浏览器内核（不推荐）。
 
