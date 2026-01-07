@@ -18,7 +18,7 @@ jobs:
           - os: windows-latest
             build_name: Bestdori_BG_Windows_x64
             asset_path: dist/Bestdori_BG_Windows_x64.exe
-          - os: ubuntu-latest
+          - os: ubuntu-20.04
             build_name: Bestdori_BG_Linux_x64
             asset_path: dist/Bestdori_BG_Linux_x64
 
