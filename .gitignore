@@ -44,3 +44,5 @@ cache/
 
 Thumbs.db
 *.tkcache
+
+*.png
