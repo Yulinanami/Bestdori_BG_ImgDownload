@@ -34,6 +34,15 @@ pip install -r requirements.txt
 python main.py
 ```
 
+## 注意
+
+对于Linux版本需要在存放可执行文件的目录下使用命令启动
+
+```bash
+chmod +x Bestdori_BG_Linux_x64 
+./Bestdori_BG_Linux_x64 
+```
+
 运行后按提示输入：
 
 1) 起始/结束 scenario 编号（默认 0-123，可交换顺序）。  
