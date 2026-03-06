@@ -1,0 +1,57 @@
+name: Build
+
+on:
+  release:
+    types: [created]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build for ${{ matrix.platform_name }}
+    runs-on: ${{ matrix.runs_on }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform_name: Linux
+            runs_on: ubuntu-22.04
+            binary_name: Bestdori_BG_Linux_x64
+            asset_path: dist/Bestdori_BG_Linux_x64
+          - platform_name: Windows
+            runs_on: windows-latest
+            binary_name: Bestdori_BG_Windows_x64
+            asset_path: dist/Bestdori_BG_Windows_x64.exe
+          - platform_name: macOS
+            runs_on: macos-15
+            binary_name: Bestdori_BG_macOS_arm64
+            asset_path: dist/Bestdori_BG_macOS_arm64
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      - name: Build with PyInstaller
+        run: |
+          pyinstaller --onefile --name ${{ matrix.binary_name }} --clean main.py
+
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v1
+        if: github.event_name == 'release'
+        with:
+          files: ${{ matrix.asset_path }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
