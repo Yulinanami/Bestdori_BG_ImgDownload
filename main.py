@@ -440,5 +440,16 @@ def main():
             console.print(f"  - {item['filename']}: {item['error']}")
 
 
+def wait_for_exit():
+    """等待用户回车后退出程序。"""
+    try:
+        input("\n按回车键退出...")
+    except EOFError:
+        pass
+
+
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    finally:
+        wait_for_exit()
