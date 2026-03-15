@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> 本仓库的功能已合并到 [Bestdori & Sekai 背景图下载器](https://github.com/Yulinanami/Sekai_BG_ImgDownload)，请移步到那里使用。
+
 # Bestdori 背景图批量下载器 (Bestdori BG Image Downloader) 🎸
 
 Bestdori 场景背景图下载工具。
